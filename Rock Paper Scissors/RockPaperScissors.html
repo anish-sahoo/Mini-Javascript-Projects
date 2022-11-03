@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>RockPaperScissors</title>
+</head>
+
+<style>
+    .head1{
+        font-size: 1.5cm;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-shadow: 1px 1px 2px black, 0 0 1em royalblue, 0 0 0.2em blue;
+        margin-left: 30px;
+    }
+    .gameBtn{
+        font-size: 2cm;
+        margin-left: 40px;
+        background-color: aqua;
+        box-shadow: 2px 2px 10px 1px;
+    }
+    .scoreBtn{
+        background-color: deepskyblue;
+        font-size: 3cm;
+    }    
+    .parag{
+        margin-left: 10%;
+        font-size: 1cm; 
+    }
+    .par{
+        color: royalblue;
+        margin-left: 5%;
+        font-size: 0.6cm;
+    }
+</style>
+
+<script>
+    let counter=0;
+let turns=0;
+function play(value) {
+    turns++;
+    document.getElementById("turns").innerHTML = "Turns:"+turns;
+    let computerMove = Math.floor(Math.random()*3)+1;
+    switch (value) {
+        case 1:
+            if(computerMove == 2){
+                document.getElementById("t1").innerHTML = "Computer chose Paper"
+                lose();
+                break;
+            }
+            if(computerMove == 3){
+                document.getElementById("t1").innerHTML = "Computer chose Scissors"
+                win();
+                break;
+            }
+            document.getElementById("t1").innerHTML = "Computer chose Rock"
+            break;
+        case 2:
+            if(computerMove == 1){
+                document.getElementById("t1").innerHTML = "Computer chose Rock"
+                win();
+                break;
+            }
+            if(computerMove == 3){
+                document.getElementById("t1").innerHTML = "Computer chose Scissors"
+                lose();
+                break;
+            }
+            document.getElementById("t1").innerHTML = "Computer chose Paper"
+            break;
+        case 3:
+            if(computerMove == 1){
+                document.getElementById("t1").innerHTML = "Computer chose Rock"
+                lose();
+                break;
+            }
+            if(computerMove == 2){
+                document.getElementById("t1").innerHTML = "Computer chose Paper"
+                win();
+                break;
+            }
+            document.getElementById("t1").innerHTML = "Computer chose Scissors"
+            break;
+        
+        default:
+            break;
+    }
+}
+function win() {
+    counter++;
+    document.getElementById("Result").innerHTML = "Result: Win";
+    document.getElementById("winCtr").innerHTML = "Wins:"+counter;
+    document.getElementById("turns").innerHTML = "Turns:"+turns;
+}
+function lose() {
+    document.getElementById("Result").innerHTML = "Result: Lose";
+}
+function reset() {
+    turns=0;
+    counter=0;
+    document.getElementById("t1").innerHTML = "Computer chose ";
+    document.getElementById("winCtr").innerHTML = "Wins: 0";
+    document.getElementById("turns").innerHTML = "Turns: 0";
+    document.getElementById("Result").innerHTML = "Result: ";
+}
+</script>
+
+<body style="background-color: bisque;">
+    <h1 class="head1">Rock Paper Scissors</h1>
+    <button type = "button" class="gameBtn" onclick="play(1)">Rock</button>
+    <button type = "button" class="gameBtn" onclick="play(2)">Paper</button>
+    <button type = "button" class="gameBtn" onclick="play(3)">Scissors</button>
+
+    <p id="t1" class="parag">Computer chose:</p>
+    <p class="parag" id="Result">Result:</p>
+    
+    <p class="par" id="winCtr"> Wins:0</p>
+    <p class="par" id="turns">Turns:0</p>
+    <button class="scoreBtn" onclick="reset()" id="ResetScore">ResetScore</button>
+</body>
+
+</html>
